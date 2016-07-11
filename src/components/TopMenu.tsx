@@ -29,12 +29,18 @@ export class TopMenu extends React.Component<ITopMenuProps, ITopMenuState> {
     }
 
     public addQueueButtonPressed() {
-        this.setState({hasAddButtonBeenPressed : true});
+        this.setState(state => {
+            state.hasAddButtonBeenPressed = true;
+            return state;
+        });
     }
 
     public enterPressed() {
         let message = (document.getElementById("NewMessage") as HTMLInputElement).value;
-        this.setState({hasAddButtonBeenPressed : false});
+        this.setState(state => {
+            state.hasAddButtonBeenPressed = false;
+            return state;
+        });
         if (message !== "") {
             this.props.handleAddQueue(message);
         }

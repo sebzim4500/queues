@@ -31,21 +31,20 @@ export class Main extends React.Component<IMainProps, IMainState> {
             console.log(event);
             console.log(event.data);
             let json = JSON.parse(event.data);
-            if (json.command === "newQueue") {
-                this.state.queues.pushQueue(json.queue);
-                this.setState(this.state);
-            } else if (json.command === "allQueues") {
-                this.state.queues = new Queues(json.queues);
-                this.setState(this.state);
-            } else if (json.command === "toggleJoin") {
-                this.state.queues.toggleJoin(json.id, json.name);
-                this.setState(this.state);
-            } else if (json.command === "deleteQueue") {
-                this.state.queues.deleteQueue(json.id);
-                this.setState(this.state);
-            } else {
-                console.log("Invalid command: " + json.command);
-            }
+            this.setState(state => {
+                if (json.command === "newQueue") {
+                    state.queues.pushQueue(json.queue);
+                } else if (json.command === "allQueues") {
+                    state.queues = new Queues(json.queues);
+                } else if (json.command === "toggleJoin") {
+                    state.queues.toggleJoin(json.id, json.name);
+                } else if (json.command === "deleteQueue") {
+                    state.queues.deleteQueue(json.id);
+                } else {
+                    console.log("Invalid command: " + json.command);
+                }
+                return state;
+            });
         };
         return socket;
     }

@@ -19,7 +19,9 @@ export class App extends React.Component<IAppProps, IAppState> {
         if (!this.state.name) {
             return <EnterName handleNameSubmit = {name => {
                 document.title = "Queue List: " + name;
-                this.setState({name : name});
+                this.setState(state => {
+                    state.name = name;
+                    return state;});
             }}/>;
         } else {
             return <Main name={this.state.name}/>;

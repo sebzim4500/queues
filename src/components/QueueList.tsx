@@ -14,7 +14,7 @@ interface IQueueListState {
 }
 
 export class QueueList extends React.Component<IQueueListProps, IQueueListState> {
-    public ender() {
+    public render() {
         return <div className="QueueList"> {
             this.props.queues.map(queue => {
                 return <QueueView key = {queue.id} queue = {queue} currentUser = {this.props.currentUser}
