@@ -2,9 +2,11 @@
   "globalDependencies": {
     "express": "registry:dt/express#4.0.0+20160317120654",
     "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160701212727",
+    "jest": "registry:dt/jest#0.9.0+20160706021812",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "node": "registry:dt/node#6.0.0+20160621231320",
     "react": "registry:dt/react#0.14.0+20160630100702",
+    "react-addons-test-utils": "registry:dt/react-addons-test-utils#0.14.0+20160427035638",
     "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157",
     "ws": "registry:dt/ws#0.0.0+20160405094435"

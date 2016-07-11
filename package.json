@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +14,29 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
+    "jest-cli": "*",
+    "react": "^15.2.1",
+    "react-addons-test-utils": "^15.2.1",
+    "react-dom": "^15.2.1",
     "source-map-loader": "^0.1.5",
     "ts-loader": "^0.8.2"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "testFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react/",
+      "<rootDir>/node_modules/react-dom/",
+      "<rootDir>/node_modules/react-addons-test-utils/"
+    ]
   }
 }
