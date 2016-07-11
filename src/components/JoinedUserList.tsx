@@ -1,29 +1,33 @@
 import * as React from "react";
 
-interface JoinedUserListProps {
-    users : string[],
-    currentUser : string
+interface IJoinedUserListProps {
+    users: string[];
+    currentUser: string;
 }
 
-interface JoinedUserListState {
+interface IJoinedUserListState {
 }
 
-export class JoinedUserList extends React.Component<JoinedUserListProps, JoinedUserListState> {
-    render() {
-        return <span className="JoinedUserList"> {this.props.users.map(user => <JoinedUserView key = {user} user = {user} currentUser = {this.props.currentUser}/>)} </span>;
+export class JoinedUserList extends React.Component<IJoinedUserListProps, IJoinedUserListState> {
+    public render() {
+        return <span className="JoinedUserList">
+            {this.props.users.map(user =>
+                <JoinedUserView key = {user} user = {user} currentUser = {this.props.currentUser}/>)} </span>;
     }
 }
 
-interface JoinedUserViewProps {
-    user : string,
-    currentUser : string
+interface IJoinedUserViewProps {
+    user: string;
+    currentUser: string;
 }
 
-interface JoinedUserViewState {
+interface IJoinedUserViewState {
 }
 
-export class JoinedUserView extends React.Component<JoinedUserViewProps, JoinedUserViewState> {
-    render() {
-        return <span className={this.props.currentUser == this.props.user ? "JoinedUserViewCurrent" : "JoinedUserView"}> {this.props.user}</span>;
+export class JoinedUserView extends React.Component<IJoinedUserViewProps, IJoinedUserViewState> {
+    public render() {
+        let isCurrentUser = this.props.currentUser === this.props.user;
+        return <span className={isCurrentUser ? "JoinedUserViewCurrent" : "JoinedUserView"}>
+            {this.props.user}</span>;
     }
 }

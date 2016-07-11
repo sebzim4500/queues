@@ -1,14 +1,14 @@
 import * as React from "react";
 
-interface AddQueueButtonProps {
-    handleAddQueuePressed : () => void
+interface IAddQueueButtonProps {
+    handleAddQueuePressed: () => void;
 }
 
-interface AddQueueButtonState {
+interface IAddQueueButtonState {
 }
 
-export class AddQueueButton extends React.Component<AddQueueButtonProps, AddQueueButtonState> {
-    render() {
+export class AddQueueButton extends React.Component<IAddQueueButtonProps, IAddQueueButtonState> {
+    public render() {
         return <div className="AddQueueButton" onClick={ () => this.props.handleAddQueuePressed() }> New Queue </div>;
     }
 }

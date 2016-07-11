@@ -1,38 +1,41 @@
 import * as React from "react";
+
 import { AddQueueButton } from "./AddQueueButton";
 
-interface TopMenuProps {
-    handleAddQueue : (message : string) => void
+interface ITopMenuProps {
+    handleAddQueue: (message: string) => void;
 }
 
-interface TopMenuState {
-    hasAddButtonBeenPressed : boolean
+interface ITopMenuState {
+    hasAddButtonBeenPressed: boolean;
 }
 
-export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
+export class TopMenu extends React.Component<ITopMenuProps, ITopMenuState> {
     constructor() {
         super();
         this.state = {hasAddButtonBeenPressed : false};
     }
 
-    render() {
+    public render() {
         if (this.state.hasAddButtonBeenPressed) {
             return <div className="TopMenu">
-                <input className="TopMenuTextbox" type="textarea" id = "NewMessage" onKeyUp={(event) => {if (event.keyCode == 13) {this.enterPressed()}}}/>
-                </div>
+                <input className="TopMenuTextbox" type="textarea" id = "NewMessage"
+                    onKeyUp={(event) => {if (event.keyCode === 13) {this.enterPressed();}}}/>
+                </div>;
         } else {
-            return <div className="TopMenu"> <AddQueueButton handleAddQueuePressed={() => this.addQueueButtonPressed()} /> </div>;
+            return <div className="TopMenu">
+                <AddQueueButton handleAddQueuePressed={() => this.addQueueButtonPressed()} /> </div>;
         }
     }
 
-    addQueueButtonPressed() {
+    public addQueueButtonPressed() {
         this.setState({hasAddButtonBeenPressed : true});
     }
 
-    enterPressed() {
-        var message = (document.getElementById("NewMessage") as HTMLInputElement).value;
+    public enterPressed() {
+        let message = (document.getElementById("NewMessage") as HTMLInputElement).value;
         this.setState({hasAddButtonBeenPressed : false});
-        if (message != "") {
+        if (message !== "") {
             this.props.handleAddQueue(message);
         }
     }

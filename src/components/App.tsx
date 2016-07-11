@@ -1,28 +1,28 @@
-import * as React from "react";
 import { EnterName } from "./EnterName";
 import { Main } from "./Main";
+import * as React from "react";
 
-interface AppProps {
+interface IAppProps {
 }
 
-interface AppState {
-    name : string
+interface IAppState {
+    name: string;
 }
 
-export class App extends React.Component<AppProps, AppState> {
+export class App extends React.Component<IAppProps, IAppState> {
     constructor() {
         super();
         this.state = {name : null};
     }
-    
-    render() {
+
+    public render() {
         if (!this.state.name) {
             return <EnterName handleNameSubmit = {name => {
                 document.title = "Queue List: " + name;
                 this.setState({name : name});
             }}/>;
         } else {
-            return <Main name={this.state.name}/>
+            return <Main name={this.state.name}/>;
         }
     }
 }
