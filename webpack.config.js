@@ -1,7 +1,7 @@
 module.exports = [{
     entry: "./src/backend/backend.ts",
     output: {
-        filename: "./dist/server.bundle.js",
+        filename: "./dist/server/bundle.js",
     },
 
     // Enable sourcemaps for debugging webpack's output.
@@ -28,7 +28,7 @@ module.exports = [{
 }, {
     entry: "./src/index.tsx",
     output: {
-        filename: "./dist/client.bundle.js",
+        filename: "./dist/client/bundle.js",
     },
 
     // Enable sourcemaps for debugging webpack's output.

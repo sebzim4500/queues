@@ -11,9 +11,9 @@ const httpPort = 8080;
 http.createServer(function (request, response) {
     console.log('http server requesting: ' + request.url);
 
-    var filePath = '.' + request.url;
-    if (filePath == './')
-        filePath = './index.html';
+    var filePath = 'dist/client' + request.url;
+    if (filePath == 'dist/client/')
+        filePath = 'dist/client/index.html';
 
     var extname = path.extname(filePath);
     var contentType = 'text/html';
