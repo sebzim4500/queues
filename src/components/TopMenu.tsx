@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 import { AddQueueButton } from "./AddQueueButton";
 
@@ -36,7 +37,8 @@ export class TopMenu extends React.Component<ITopMenuProps, ITopMenuState> {
     }
 
     public enterPressed() {
-        let message = (document.getElementById("NewMessage") as HTMLInputElement).value;
+        let node = ReactDOM.findDOMNode(this);
+        let message = (node.querySelector("#NewMessage") as HTMLInputElement).value;
         this.setState(state => {
             state.hasAddButtonBeenPressed = false;
             return state;

@@ -14,7 +14,7 @@ function getExampleQueues(): Queues {
 }
 
 describe("Queues", () => {
-    it("has an indexOf function", () => {
+    it("can find the index of a queue", () => {
         let queues = getExampleQueues();
         expect(queues.indexOf(17)).toBe(0);
         expect(queues.indexOf(11)).toBe(1);

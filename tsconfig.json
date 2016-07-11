@@ -11,6 +11,8 @@
         "./typings/index.d.ts",
         "./src/components/Main.tsx",
         "./src/index.tsx",
-        "./src/backend/backend.ts"
+        "./src/backend/backend.ts",
+        "./__tests__/enter-name-test.tsx",
+        "./__tests__/top-menu-test.tsx"
     ]
 }
