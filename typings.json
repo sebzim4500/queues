@@ -10,7 +10,6 @@
     "ws": "registry:dt/ws#0.0.0+20160405094435"
   },
   "dependencies": {
-    "http-server": "registry:npm/http-server#0.8.5+20160604000720",
-    "react-router": "registry:npm/react-router#2.4.0+20160628165748"
+    "http-server": "registry:npm/http-server#0.8.5+20160604000720"
   }
 }
