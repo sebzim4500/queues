@@ -2,20 +2,21 @@ import * as React from "react";
 import { TopMenu } from "./TopMenu";
 import { QueueList } from "./QueueList";
 import { Queue } from "../Queue";
+import { Queues } from "../Queues";
 
 interface MainProps {
     name : string
 }
 
 interface MainState {
-    queues : Queue[],
+    queues : Queues;
     socket : WebSocket
 }
 
 export class Main extends React.Component<MainProps, MainState> {
     constructor() {
         super();
-        this.state = { queues : [], socket : this.setUpSocket() };
+        this.state = { queues : new Queues([]), socket : this.setUpSocket() };
     }
     
     sendMessage(message : any) {
@@ -30,22 +31,16 @@ export class Main extends React.Component<MainProps, MainState> {
             console.log(event.data);
             let json = JSON.parse(event.data);
             if (json.command == "newQueue") {
-                this.state.queues.push(json.queue);
+                this.state.queues.pushQueue(json.queue);
                 this.setState(this.state);
             } else if (json.command == "allQueues") {
-                this.state.queues = json.queues;
+                this.state.queues = new Queues(json.queues);
                 this.setState(this.state);
-            } else if (json.command == "updateQueue") {
-                for (let i=0; i<this.state.queues.length; i++) {
-                    if (this.state.queues[i].id == json.queue.id) {
-                        this.state.queues[i] = json.queue;
-                        this.setState(this.state);
-                        return;
-                    }
-                    console.log("Could not find queue:", json.queue);
-                }
+            } else if (json.command == "toggleJoin") {
+                this.state.queues.toggleJoin(json.id, json.name);
+                this.setState(this.state);
             } else if (json.command == "deleteQueue") {
-                this.state.queues.splice(json.index, 1);
+                this.state.queues.deleteQueue(json.id);
                 this.setState(this.state);
             } else {
                 console.log("Invalid command: " + json.command);
@@ -66,7 +61,7 @@ export class Main extends React.Component<MainProps, MainState> {
         console.log("rendering main with name: " +this.props.name);
         return <div className="Main">
             <TopMenu handleAddQueue = {message => this.sendMessage({command : "newQueue", message, name : this.props.name})}/>
-            <QueueList queues = {this.state.queues} currentUser = {this.props.name}
+            <QueueList queues = {this.state.queues.queues} currentUser = {this.props.name}
                 handleJoinPressed = {queue => this.handleJoinPressed(queue)}
                 handleDeletePressed = {queue => this.handleDeletePressed(queue)}/>
             </div>;

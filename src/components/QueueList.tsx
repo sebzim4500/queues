@@ -18,6 +18,6 @@ export class QueueList extends React.Component<QueueListProps, QueueListState> {
             this.props.queues.map(queue =>
             { return <QueueView key = {queue.id} queue = {queue} currentUser = {this.props.currentUser}
                 handleJoinPressed = {this.props.handleJoinPressed}
-                handleDeletePressed = {this.props.handleDeletePressed}/>})} </div>;
+                handleDeletePressed = {this.props.handleDeletePressed}/>}).reverse()} </div>;
     }
 }

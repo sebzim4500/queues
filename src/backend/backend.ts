@@ -1,4 +1,5 @@
 import { Queue } from "../Queue";
+import { Queues } from "../Queues";
 import ws = require("ws");
 
 import http = require('http');
@@ -46,7 +47,7 @@ http.createServer(function (request, response) {
 }).listen(httpPort);
 console.log('http server listening on port ' + httpPort);
 
-let queues : Queue[] = [];
+let queues : Queues = new Queues([]);
 
 const wsPort = 8081;
 let wss = new ws.Server({port : wsPort});
@@ -54,53 +55,27 @@ let clients : ws[] = [];
 
 let currentId = 0;
 
-function newQueue(message : string, name : string) {
-    let newQueue = new Queue(message, currentId++, [name]);
-    queues.push(newQueue);
-    let toSend = JSON.stringify({ command : "newQueue", queue : newQueue});
+function sendToAll(message : any) {
+    let toSend = JSON.stringify(message);
     for(let client of clients) {
         client.send(toSend);
     }
 }
 
+function newQueue(message : string, name : string) {
+    let newQueue = new Queue(message, currentId++, [name]);
+    queues.pushQueue(newQueue);
+    sendToAll({ command : "newQueue", queue : newQueue });
+}
+
 function toggleJoin(user : string, queueId : number) {
-    for(let queue of queues) {
-        if (queue.id == queueId) {
-            let index = queue.users.indexOf(user);
-            console.log(index);
-            if (index == -1) {
-                queue.users.push(user);
-            } else {
-                queue.users.splice(index,1);
-            }
-            let toSend = JSON.stringify({command : "updateQueue", queue : queue});
-            for(let client of clients) {
-                client.send(toSend);
-            }
-            return;
-        }
-    }
-    console.log("Could not find queue with id: " + queueId);
+    queues.toggleJoin(queueId, user);
+    sendToAll({ command : "toggleJoin", id : queueId, name : user });
 }
 
 function deleteQueue(queueId : number) {
-    let index = -1;
-    for(let i = 0; i<queues.length; i++) {
-        if (queues[i].id == queueId) {
-            index = i;
-            break;
-        }
-    }
-    if (index == -1) {
-        console.log("Trying to delete nonexistent queue: " + queueId);
-    } else {
-        queues.splice(index, 1);
-        let toSend = JSON.stringify({command : "deleteQueue", index : index});
-        for(let client of clients) {
-            client.send(toSend);
-        }
-        return;
-    }
+    queues.deleteQueue(queueId);
+    sendToAll({ command : "deleteQueue", id : queueId });
 }
 
 wss.on("connection", (client) => {
@@ -123,7 +98,7 @@ wss.on("connection", (client) => {
         console.log("removing: " + index);
         clients.splice(index, 1); 
     });
-    client.send(JSON.stringify({command: "allQueues", queues: queues}));
+    client.send(JSON.stringify({command: "allQueues", queues: queues.queues}));
     clients.push(client);
 });
 
