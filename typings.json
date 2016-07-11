@@ -1,0 +1,16 @@
+{
+  "globalDependencies": {
+    "express": "registry:dt/express#4.0.0+20160317120654",
+    "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160701212727",
+    "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "node": "registry:dt/node#6.0.0+20160621231320",
+    "react": "registry:dt/react#0.14.0+20160630100702",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160606155157",
+    "ws": "registry:dt/ws#0.0.0+20160405094435"
+  },
+  "dependencies": {
+    "http-server": "registry:npm/http-server#0.8.5+20160604000720",
+    "react-router": "registry:npm/react-router#2.4.0+20160628165748"
+  }
+}

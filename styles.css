@@ -1,0 +1,88 @@
+body {
+    margin: 0px;
+}
+
+.TopMenu, .EnterName {
+    background-color: rgb(200,200,200);
+    border-radius: 0px 0px 5px 5px;
+    padding:0px 50px;
+    border: solid black 1px;
+    border-top: none;
+}
+
+.EnterName {
+    margin-left:auto;
+    margin-right:auto;
+    width:700px;
+    font-size:25px;
+}
+
+.EnterName input {
+    font-size:30px;
+    width:540px;
+}
+
+.Main {
+    width:800px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.AddQueueButton {
+    background-color: rgb(89,89,178);
+    width:200px;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    color: white;
+    padding:11px 20px;
+}
+
+.AddQueueButton:hover {
+    background-color: rgb(100,100,200);
+}
+
+.TopMenuTextbox {
+    width:600px;
+    margin-left:50px;
+    font-size: 30px;
+}
+
+.QueueViewMessage {
+    padding: 5px 15px 5px 0px;
+    font-size:30px;
+}
+
+.QueueViewMessage:hover {
+    text-decoration: line-through;
+}
+
+.QueueView {
+    background-color:rgb(240, 240, 240);
+    margin-top:20px;
+    font-size:20px;
+    border-radius:15px;
+    padding: 10px 20px;
+}
+
+.JoinButton {
+    background-color: #c0c0ff;
+    border:3px;
+    padding:3px 3px;
+}
+
+.JoinButton:hover {
+    background-color:#e0e0ff;
+}
+
+.JoinedUserView, .JoinedUserViewCurrent {
+    margin-left:10px;
+}
+
+.JoinedUserView:hover, .JoinedUserViewCurrent:hover {
+    text-decoration: underline;
+}
+
+.JoinedUserView {
+    color:#606060;
+}
